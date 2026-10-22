@@ -153,11 +153,11 @@ test('mobile no-overflow film, locale switch, story map, intentional skip, repla
   assert.equal(await page.locator('#volumeNumber').innerText(),'70%');
   await page.locator('#closeHelp').click();
   await screenshot(page,'07-interactive-scene-mobile.png');
-  await page.locator('#resetButton').click();
   page.once('dialog',dialog=>dialog.accept());
-  // Confirm can be browser-native; if automation immediately dismissed the
-  // modal this should reveal it as an actionable dialog instead.
-  await page.waitForTimeout(20);
+  await page.locator('#resetButton').click();
+  await scene(page,'s00');
+  assert.equal(await page.locator('#backButton').isDisabled(),true);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('iv.protocol-zero.progress.v1')!==null),true);
   assert.deepEqual(errors,[]);
 });
 test('reduced-motion setting overrides even explicit Cinematic choice and preserves meaning',async t=>{
