@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080d13">
+  <meta name="description" content="IMPOSSIBLE VENTURES — ПРОТОКОЛ НУЛЬ: бесплатное кинематографическое интерактивное sci-fi-путешествие через семь миров рекламы и два настоящих финала.">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="IMPOSSIBLE VENTURES · PROTOCOL ZERO">
+  <meta property="og:description" content="18 cinematic scenes. Seven realities. Your choices change the story.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="./assets/brand.svg">
+  <link rel="preload" as="image" href="./assets/frames/shot_00.svg" fetchpriority="high">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.mjs"></script>
+  <title>IMPOSSIBLE VENTURES — PROTOCOL ZERO</title>
+</head>
+<body>
+  <div class="film-shell">
+    <main id="film" class="film-stage" data-quality="balanced" aria-label="Интерактивный фильм">
+      <div class="scene-picture" aria-hidden="true">
+        <img id="frameImage" class="frame-image" src="./assets/frames/shot_00.svg" alt="" fetchpriority="high" decoding="async">
+      </div>
+      <div class="haze-layer" aria-hidden="true"></div>
+      <div class="film-vignette" aria-hidden="true"></div>
+      <div class="film-noise" aria-hidden="true"></div>
+      <canvas id="particles" class="particle-field" aria-hidden="true"></canvas>
+
+      <header class="film-header">
+        <a class="brand" href="./" aria-label="IMPOSSIBLE VENTURES · Начало">
+          <span class="brand-emblem" aria-hidden="true"><span class="brand-ring"></span><span class="brand-dot"></span></span>
+          <span class="brand-name">IMPOSSIBLE <strong>VENTURES</strong><small>CINEMATIC INTERACTIVE ENGINE</small></span>
+        </a>
+        <div class="header-right">
+          <div class="live-marker"><span class="live-dot" aria-hidden="true"></span><span>PROTOCOL / ZERO</span></div>
+          <label class="select-wrap" for="language">
+            <span class="sr-only">Язык / Language / 语言</span>
+            <select id="language" aria-label="Language / Язык">
+              <option value="ru">RU</option>
+              <option value="en">EN</option>
+              <option value="zh">中文</option>
+            </select>
+          </label>
+          <label class="select-wrap quality-control" for="quality">
+            <span class="sr-only">Режим качества / Quality</span>
+            <select id="quality" aria-label="Quality / Качество">
+              <option value="auto">AUTO</option>
+              <option value="cinematic">CINEMATIC</option>
+              <option value="balanced">BALANCED</option>
+              <option value="lite">LITE</option>
+            </select>
+          </label>
+          <button type="button" id="soundButton" class="icon-btn sound-button" aria-pressed="false" aria-label="Включить звук">
+            <span aria-hidden="true" id="soundIcon">♪</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="cinematic-topline" aria-hidden="true">
+        <span>IV-001 / AN INTERACTIVE FILM</span>
+        <span class="scope-line"></span>
+        <span id="sequenceLabel">00 / 17</span>
+      </div>
+
+      <div class="film-content">
+        <section class="narrative" aria-labelledby="sceneTitle">
+          <div class="chapter-label"><span class="chapter-dash" aria-hidden="true"></span><span id="chapterLabel">ПРОЛОГ / 00</span></div>
+          <h1 id="sceneTitle" tabindex="-1">Тишина перед сигналом</h1>
+          <p id="sceneNarration" class="scene-narration">В мире, где каждый хочет твоего внимания, одна история ничего не требует.</p>
+
+          <div class="interaction-zone">
+            <div id="portalArea" class="portal-area" hidden>
+              <div class="interaction-heading">
+                <span id="portalHeading">ВЫБЕРИ МИР</span>
+                <span id="portalCount">0 / 7</span>
+              </div>
+              <div id="portalGrid" class="portal-grid" role="group" aria-label="Семь миров"></div>
+            </div>
+
+            <div id="choiceArea" class="choice-area" hidden>
+              <div class="interaction-heading"><span id="choiceHeading">РЕШЕНИЕ МИРА</span><span>YOUR CHOICE MATTERS</span></div>
+              <div id="choices" class="choices" role="group" aria-label="Сюжетные варианты"></div>
+              <div id="consequence" class="consequence" role="status" aria-live="polite" hidden></div>
+            </div>
+
+            <div id="detailArea" class="detail-area" hidden>
+              <button type="button" class="clue-button" id="detailButton"><span class="clue-ping" aria-hidden="true"></span><span id="detailLabel">ИССЛЕДОВАТЬ ОБЪЕКТ</span><span aria-hidden="true">↗</span></button>
+              <div id="detailPanel" class="clue-text" role="status" aria-live="polite" hidden></div>
+            </div>
+
+            <div id="revealArea" class="reveal-area" hidden>
+              <button type="button" class="secondary-action" id="vaultButton" hidden>ОТКРЫТЬ СЕКРЕТНОЕ ХРАНИЛИЩЕ</button>
+            </div>
+
+            <div class="main-actions">
+              <button type="button" class="primary-action" id="nextButton"><span id="nextLabel">ВОЙТИ В ИСТОРИЮ</span><span aria-hidden="true">↗</span></button>
+              <button type="button" class="text-action" id="skipButton">ПРОПУСТИТЬ ВСТУПЛЕНИЕ →</button>
+              <button type="button" class="text-action" id="hubButton" hidden>ВЕРНУТЬСЯ К МИРАМ →</button>
+            </div>
+          </div>
+
+          <section class="epilogue-actions" id="epilogueArea" hidden aria-label="Финальные действия">
+            <p id="epilogueSummary" class="epilogue-summary"></p>
+            <div class="epilogue-links">
+              <a id="platformLink" class="primary-action external-link" href="https://github.com/osmanosmanov6880-bot/impossible-ventures" target="_blank" rel="noopener noreferrer">ИЗУЧИТЬ ПЛАТФОРМУ <span aria-hidden="true">↗</span></a>
+              <button type="button" id="downloadRoute" class="secondary-action">СКАЧАТЬ МОЙ МАРШРУТ ↓</button>
+              <button type="button" id="restartFinal" class="text-action">ПЕРЕИГРАТЬ ИСТОРИЮ ↻</button>
+            </div>
+            <p id="fictionDisclaimer" class="disclaimer-note">Художественная история. Это не реальные показы, покупатели или конверсии.</p>
+          </section>
+        </section>
+
+        <aside class="side-intel" aria-label="Состояние сигнала">
+          <div class="intel-head"><span class="status-indicator" aria-hidden="true"></span><span id="signalLabel">СТАТУС СИГНАЛА</span><span class="intel-number">IV / 01</span></div>
+          <div class="signal-disc" aria-hidden="true"><span class="disc-inner"></span><span class="disc-core"></span></div>
+          <div class="intel-stat"><span id="visitedLabel">ИССЛЕДОВАНО МИРОВ</span><strong id="worldsVisited">00 <small>/ 07</small></strong></div>
+          <div class="intel-stat"><span id="fragmentLabel">ОСКОЛКИ ПАМЯТИ</span><strong id="fragmentsFound">00 <small>/ 07</small></strong></div>
+          <div class="intel-stat optional"><span id="orientationLabel">ЛОКАЛЬНАЯ ИСТОРИЯ</span><strong id="orientationValue">—</strong></div>
+          <div class="intel-foot"><span id="intelFootnote">Ваш выбор меняет художественную историю. Не рекламная аналитика.</span></div>
+        </aside>
+      </div>
+
+      <footer class="film-footer">
+        <div class="navigation-tools">
+          <button type="button" id="backButton" class="footer-action" disabled><span aria-hidden="true">←</span><span id="backLabel">НАЗАД</span></button>
+          <button type="button" id="mapButton" class="footer-action"><span aria-hidden="true">⊞</span><span id="mapLabel">КАРТА ИСТОРИИ</span></button>
+          <button type="button" id="resetButton" class="footer-action"><span aria-hidden="true">↺</span><span id="resetLabel">СБРОСИТЬ</span></button>
+        </div>
+        <div class="footer-right">
+          <div class="film-clock"><span id="chapterCounter">SCENE 01 / 18</span><div class="mini-progress"><div id="progressFill" class="mini-progress-fill"></div></div></div>
+          <span class="footer-rule" id="saveNote">Прогресс хранится в этом браузере</span>
+          <button type="button" id="helpButton" class="help-button" aria-label="Помощь">?</button>
+        </div>
+      </footer>
+      <div class="bottom-caption" aria-hidden="true"><span>FICTION / NO PAID MEDIA CLAIMS</span><span id="effectiveMode">CINEMATIC / AUTO</span></div>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <dialog id="mapDialog" class="overlay-dialog" aria-labelledby="mapTitle">
+    <div class="dialog-top"><span class="dialog-index">WORLD MAP / IV-001</span><button type="button" id="closeMap" class="close-dialog" aria-label="Закрыть">×</button></div>
+    <h2 id="mapTitle">Карта истории</h2>
+    <p id="mapDescription">Выбирай миры и находи фрагменты. Завершённые ветки можно исследовать повторно.</p>
+    <div id="mapWorldList" class="map-list"></div>
+    <p id="mapFooter" class="dialog-footnote"></p>
+  </dialog>
+
+  <dialog id="helpDialog" class="overlay-dialog" aria-labelledby="helpTitle">
+    <div class="dialog-top"><span class="dialog-index">ACCESSIBILITY / CONTROLS</span><button type="button" id="closeHelp" class="close-dialog" aria-label="Закрыть">×</button></div>
+    <h2 id="helpTitle">Как смотреть этот фильм</h2>
+    <div id="helpCopy" class="help-copy"></div>
+    <label class="volume-row" for="volume"><span id="volumeLabel">ГРОМКОСТЬ</span><input type="range" id="volume" min="0" max="100" value="23" step="1"><output id="volumeNumber" for="volume">23%</output></label>
+    <p id="privacyHelp" class="dialog-footnote">Сохраняются только местные игровые решения в localStorage. Очистить можно кнопкой «Сбросить». Нет профилей и внешней аналитики.</p>
+  </dialog>
+</body>
+</html>
