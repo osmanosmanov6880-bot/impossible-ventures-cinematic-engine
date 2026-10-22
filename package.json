@@ -1,0 +1,20 @@
+{
+  "name": "impossible-ventures-cinematic-engine",
+  "version": "1.0.0-beta.1",
+  "private": true,
+  "type": "module",
+  "description": "PROTOCOL ZERO: authored 18-scene cinematic interactive browser film with seven worlds, alternate endings and original vector frames.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/engine.test.mjs tests/http.test.mjs",
+    "test:e2e": "node --test tests/browser.test.mjs",
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "check": "node --check src/story.mjs && node --check src/engine.mjs && node --check src/app.mjs && node --check src/visual.mjs && node --check src/audio.mjs && node --check scripts/serve.mjs && node --check scripts/build.mjs && node --check tests/browser.test.mjs && npm test && npm run verify:assets",
+    "build": "node scripts/build.mjs"
+  },
+  "license": "UNLICENSED"
+}
